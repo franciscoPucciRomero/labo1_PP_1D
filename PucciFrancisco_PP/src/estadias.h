@@ -51,5 +51,7 @@ int estadia_borrar(eEstadia estadias[], int tam);
 void estadia_ordenarPorFecha(eEstadia estadias[], int tam);
 int estadia_printEstadia(eEstadia estadias);
 void perro_printPerro(ePerro perros);
+void inicializarEstadia(eEstadia* estadia,int TAM);
+void inicializarPerro(ePerro* perro,int TAM);
 
 #endif

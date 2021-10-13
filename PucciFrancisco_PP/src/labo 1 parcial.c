@@ -30,10 +30,13 @@ int main(void)
 	int contPerros=0;
 	float promedio;
 	//harcodeo
+	//inicializar en is empty todo
+	//inicializarEstadia(estadias, TAMESTADIA);
+	//inicializarPerro(perros, TAMPERRO);
+
 	perros[0].idPerro=7000;
 	strcpy (perros[0].nombrePerro, "Lobo");
 	strcpy (perros[0].raza, "Sharpei");
-
 	perros[0].edad=2;
 	perros[0].isEmpty=1;
 
@@ -53,26 +56,29 @@ int main(void)
 
 
 
-	pedirEntero(&eleccionMenu, "MENU\n "
-			"Elija unaopcion:\n "
-			"1:RESERVAR ESTADIA\n "
-			"2:MODIFICAR ESTADIA\n "
-			"3:CANCELAR ESTADIA \n "
-			"4:MOSTAR LISTA DE ESTADIAS\n "
-			"5:MOSTRAR LISTA PERROS\n "
-			"6:MOSTRAR PROMEDIO EDADES ",
-			"OPCION INVALIDA\n"
-			"ingrese una opcion\n"
-			"Elija unaopcion:\n "
-			"1:RESERVAR ESTADIA\n "
-			"2:MODIFICAR ESTADIA\n "
-			"3:CANCELAR ESTADIA \n "
-			"4:MOSTAR LISTA DE ESTADIAS\n "
-			"5:MOSTRAR LISTA PERROS\n "
-			"6:MOSTRAR PROMEDIO EDADES "
-			"7: salir"
-			, 1, 7);
+
+
 	do{
+		pedirEntero(&eleccionMenu, "MENU\n "
+					"Elija unaopcion:\n "
+					"1:RESERVAR ESTADIA\n "
+					"2:MODIFICAR ESTADIA\n "
+					"3:CANCELAR ESTADIA \n "
+					"4:MOSTAR LISTA DE ESTADIAS\n "
+					"5:MOSTRAR LISTA PERROS\n "
+					"6:MOSTRAR PROMEDIO EDADES \n "
+					"7: salir",
+					"OPCION INVALIDA\n"
+					"ingrese una opcion\n"
+					"Elija unaopcion:\n "
+					"1:RESERVAR ESTADIA\n "
+					"2:MODIFICAR ESTADIA\n "
+					"3:CANCELAR ESTADIA \n "
+					"4:MOSTAR LISTA DE ESTADIAS\n "
+					"5:MOSTRAR LISTA PERROS\n "
+					"6:MOSTRAR PROMEDIO EDADES \n"
+					"7: salir"
+					, 1, 7);
 	switch(eleccionMenu)
 	{
 	case 1://reservar
@@ -100,7 +106,7 @@ int main(void)
 		}
 		else
 		{
-			printf("\nno existe ninguna estadia que modificar\n");
+			printf("\nno existe ninguna estadia que cancelar\n");
 		}
 	break;
 	case 4://listas estadias//ordenamiento
@@ -119,14 +125,17 @@ int main(void)
 		}
 		else
 		{
-			printf("\nno existe ninguna estadia que modificar\n");
+			printf("\nno existe ninguna estadia que mostrar\n");
 		}
 	break;
 	case 5://lista perros//ordenamiento
+		printf("\nPERROS:\n\n%-5s %-20s %-20s %-20s\n", "ID", "NOMBRE", "RAZA", "EDAD");
 		for(i=0;i<TAMPERRO;i++)
 		{
-			//if(perros[i].==OCUPADO)
-			perro_printPerro(perros[i]);
+			if(perros[i].isEmpty==OCUPADO)
+			{
+			perro_printPerro(perros[i]);//menu perros aparte.
+			}
 		}
 
 		break;
@@ -137,9 +146,7 @@ int main(void)
 			contPerros++;
 		}
 		promedio=acumEdad/contPerros;
-		printf("promedio edad de perros=%f\n",promedio);
-	break;
-	default:
+	printf("promedio edad de perros=%f\n",promedio);
 	break;
 	case 7:
 		//cortar

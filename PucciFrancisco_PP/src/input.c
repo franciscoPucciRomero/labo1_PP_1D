@@ -5,8 +5,9 @@
  *      Author: Francisco
  */
 
+#ifndef INPUT_H_
+#define INPUT_H_
 #include "input.h"
-
 
 int pedirEntero(int* entero, char* mensaje, char* mensajeError, int min, int max)
 {
@@ -15,15 +16,15 @@ int pedirEntero(int* entero, char* mensaje, char* mensajeError, int min, int max
 
 	if(entero != NULL && mensaje != NULL && mensajeError != NULL && min < max)
 	{
-		printf("%s\n", mensaje);
+		printf("%s", mensaje);
 		fflush(stdin);
-		scanf("%d\n", &numeroIngresado);
+		scanf("%d", &numeroIngresado);
 
 		while(numeroIngresado < min || numeroIngresado > max)
 		{
-			printf("%s\n", mensajeError);
+			printf("%s", mensajeError);
 			fflush(stdin);
-			scanf("%d\n", &numeroIngresado);
+			scanf("%d", &numeroIngresado);
 		}
 
 		*entero = numeroIngresado;
@@ -40,15 +41,15 @@ int pedirFlotante(float* flotante, char* mensaje, char* mensajeError, float min,
 
 	if(flotante != NULL && mensaje != NULL && mensajeError != NULL && min < max)
 	{
-		printf("%s\n", mensaje);
+		printf("%s", mensaje);
 		fflush(stdin);
-		scanf("%f\n", &numeroIngresado);
+		scanf("%f", &numeroIngresado);
 
 		while(numeroIngresado < min || numeroIngresado > max)
 		{
-			printf("%s\n", mensajeError);
+			printf("%s", mensajeError);
 			fflush(stdin);
-			scanf("%f\n", &numeroIngresado);
+			scanf("%f", &numeroIngresado);
 		}
 
 		*flotante = numeroIngresado;
@@ -66,16 +67,16 @@ int pedirCadena(char* cadena, char* mensaje, char* mensajeError, int max)
 
 	if(cadena != NULL && mensaje != NULL && mensajeError != NULL && max > 0)
 	{
-		printf("%s\n", mensaje);
+		printf("%s", mensaje);
 		fflush(stdin);
-		scanf("%[^\n]\n", buffer);
+		scanf("%[^\n]", buffer);
 		tam = strlen(buffer);
 
 		while(tam > max)
 		{
-			printf("%s\n", mensajeError);
+			printf("%s", mensajeError);
 			fflush(stdin);
-			scanf("%[^\n]\n", buffer);
+			scanf("%[^\n]", buffer);
 			tam = strlen(buffer);
 		}
 
@@ -92,7 +93,7 @@ int pedirCaracter(char* caracter, char* mensaje)
 
 	if(caracter != NULL && mensaje != NULL)
 	{
-		printf("%s\n", mensaje);
+		printf("%s", mensaje);
 		fflush(stdin);
 		*caracter = getchar();
 		retorno = 0;
@@ -100,3 +101,4 @@ int pedirCaracter(char* caracter, char* mensaje)
 
 	return retorno;
 }
+#endif

@@ -73,20 +73,18 @@ int estadia_buscarEspacioLibre(eEstadia estadias[], int tam)
 }
 int estadia_cargarUna(eEstadia estadias[], int i, int id)
 {
-
-	int retorno = -1;
-	int aux;
+	eFecha auxfecha;
+	int retorno =0;
 
 	estadias[i].idEstadia=100000+id;
-	estadias[i].isEmpty=1;
-	estadias[i].idEstadia=id;
+	estadias[i].isEmpty=OCUPADO;
 	pedirCadena(estadias[i].nombreDuenio, "\ningrese su nombre", "error ingrese nombre", 21);//val
 	//pedirCadena(estadias[i].nombreDuenio, "ingrese su apellido", "error ingrese apellido", 21);//val
 
 	pedirEntero(estadias[i].telefonoContacto, "\ningrese telefono", "error ingrese telefono", 0, 100);//validar
-	pedirEntero(estadias[i].idPerro, "\ningrrese id del perro", "error ingrrese id del perrp", 7000, 7010);//validar
-	estadias[i].fechaEstadia=pedirFecha("\ningrese fecha de estadia");
-
+	pedirEntero(estadias[i].idPerro, "\ningrrese id del perro", "error ingrrese id del perro", 7000, 7003);//validar
+	auxfecha=pedirFecha("\ningrese fecha de estadia");
+	estadias[i].fechaEstadia=auxfecha;
 	return retorno;
 }
 //hasta aca case 1 cargar estadia
@@ -97,8 +95,7 @@ int estadia_ModificarUno(eEstadia estadias[], int tam)//modificar esta funcion y
 	int retorno = -1;
 	int index;
 	int idIngresado;
-	int opcion;
-	eEstadia auxestadia;
+
 
 	pedirEntero(&idIngresado, "\nIngrese el ID de la estadia a modificar : ", "\nReingrese el ID ID de la estadia a modificar: ", 100000, 100100);
 	index = estadia_buscarPorId(estadias, tam, idIngresado);
@@ -176,7 +173,7 @@ void estadia_ordenarPorFecha(eEstadia estadias[], int tam)
 			}
 			if(estadias[i].isEmpty == OCUPADO && estadias[j].isEmpty == OCUPADO && ((estadias[i].fechaEstadia.anio*10000)+(estadias[i].fechaEstadia.mes*100)+estadias[i].fechaEstadia.dia) == (estadias[j].fechaEstadia.anio*10000)+(estadias[j].fechaEstadia.mes*100)+(estadias[j].fechaEstadia.dia))
 			{
-				if(strcmp((estadias[i].nombreDuenio , estadias[j].nombreDuenio)) > 0)
+				if(strcmp(estadias[i].nombreDuenio , estadias[j].nombreDuenio) > 0)
 				{
 					auxEstadia = estadias[i];
 					estadias[i] = estadias[j];
@@ -203,22 +200,27 @@ int estadia_printEstadia(eEstadia estadias)
 }
 void perro_printPerro(ePerro perros)
 {
-	/*
-	  typedef struct
-	{
-	int idPerro;
-	char nombrePerro[22];
-	char raza[22];
-	int edad;
-	int isEmpty;
-	}ePerro;
-	 */
-	printf("\nPERROS:\n\n%-5s %-20s %-20s %-20s\n", "ID", "NOMBRE", "RAZA", "EDAD");
-	printf("\nPERROS:\n\n%-5d %-20s %-20s %-20d \n", perros.idPerro, perros.nombrePerro ,perros.raza ,perros.edad );
+
+
+	printf("\n%-5d %-20s %-20s %-20d \n", perros.idPerro, perros.nombrePerro ,perros.raza ,perros.edad );
 
 }
-
-
+void inicializarEstadia(eEstadia* estadia,int TAM)
+{
+	int i;
+	for(i=0;1<TAM;i++)
+	{
+		estadia[i].isEmpty=0;
+	}
+}
+void inicializarPerro(ePerro* perro,int TAM)
+{
+	int i;
+	for(i=0;1<TAM;i++)
+	{
+		perro[i].isEmpty=0;
+	}
+}
 
 
 
